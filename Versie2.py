@@ -33,7 +33,7 @@ vakjes = [[230,70],[302,64],[333,56],[363,62],[398,74],[423,97],[436,124],[443,1
 [185,600],[213,599],[241,590],[271,613],[266,648],[258,677],[238,700],[205,709],[170,698],[136,684],[100,667],[66,650],[41,622],[24,589],
 [21,557],[33,530],[51,505],[53,477],[60,405],[60,405],[60,405],[60,405],[60,405],[60,405],[60,405]]
 #defs
-def put():
+def put(beurt):
     if positsies[beurt]== 9 or positsies[beurt] == 20 or positsies[beurt] == 53 or positsies[beurt] == 60 or positsies[beurt] == 66:
         print ("je bent in de put")
         if positsies[beurt] ==9:
@@ -312,13 +312,11 @@ if info == True:
     # Start de hoofdlus van het infoscherm
     infoscherm.mainloop()
 
-
 #spelscherm
 pygame.display.set_caption("De gouden Uil ")
 scherm = pygame.display.set_mode(SchermGrote) 
 bord = pygame.image.load("bord.png")
 bord = pygame.transform.scale(bord, (550,778))
-
 
 #Ontwikelingsvragen: Dit is een lijst van ontwikelings vragen.
 ontwikelingsvragen =[["Welke vakken vond/vind je leuk op de middelbare school? En waarom?"],["Bij welke activiteit(en) voel je de meeste voldoening in de tijd die je eraan besteed? En waarom?"],
@@ -427,21 +425,13 @@ while not klaar:
                 
                 #Om het spel iets sneller te laten gaan neemt ook het persoon recht van de actieve speler stappen. Wel alleen van de 2e dobeelsteen
                 if beurt == 0:
-                    beurt = 3
-                    positsies[beurt] += worp2
-                    beurt = 0
+                    positsies[3] += worp2
                 elif beurt == 1:
-                    beurt = 0
-                    positsies[beurt] += worp2
-                    beurt = 1
+                    positsies[0] += worp2
                 elif beurt == 2:
-                    beurt = 1
-                    positsies[beurt] += worp2
-                    beurt = 2
+                    positsies[1] += worp2
                 elif beurt == 3:
-                    beurt = 2
-                    positsies[beurt] += worp2
-                    beurt = 3
+                    positsies[2] += worp2
 
                 pygame.display.flip()
 
@@ -495,7 +485,7 @@ while not klaar:
 
                 #put-tegel. Als de actieve speler hier op komt dan gaat hij achter uit
                 elif positsies[beurt]== 9 or positsies[beurt] == 20 or positsies[beurt] == 53 or positsies[beurt] == 60 or positsies[beurt] == 66:
-                    put()
+                    put(beurt)
                      
                #opdracht kaarten
                 elif positsies[beurt] == 2 or positsies[beurt] == 6 or positsies[beurt] == 11 or positsies[beurt] == 15 or positsies[beurt] == 18 or positsies[beurt] == 24 or positsies[beurt] == 30 or positsies[beurt] == 35 or positsies[beurt] == 38 or positsies[beurt] == 41 or positsies[beurt] == 47 or positsies[beurt] == 52 or positsies[beurt] == 55 or positsies[beurt] == 58 or positsies[beurt] == 62 or positsies[beurt] == 69:
@@ -513,21 +503,13 @@ while not klaar:
                 
                 #put-tegel passiefe speler. Als de pasiefe speler op de put komt moet diet ook uit gevoerd worden.  
                 if beurt == 0:
-                    beurt = 3
-                    put()
-                    beurt = 0
+                    put(3)
                 elif beurt == 1:
-                    beurt = 0
-                    put()
-                    beurt = 1
+                    put(0)
                 elif beurt ==2:
-                    beurt = 1
-                    put()
-                    beurt = 2
+                    put(1)
                 elif beurt == 3:
-                    beurt = 2
-                    put()
-                    beurt = 3
+                    put(2)
                  
                 #Om er voor te zorgen dat de volgende speler aan de beurt is
                 if beurt == 0:
